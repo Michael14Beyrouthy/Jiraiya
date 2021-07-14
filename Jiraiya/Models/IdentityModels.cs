@@ -20,6 +20,9 @@ namespace Jiraiya.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
+        public DbSet<Project> Projects { get; set; }
+        public DbSet<Sprint> Sprints { get; set; }
+        public DbSet<Issue> Issues { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
