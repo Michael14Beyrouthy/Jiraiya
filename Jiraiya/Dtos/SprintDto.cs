@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Jiraiya.Models;
 
-namespace Jiraiya.Models
+namespace Jiraiya.Dtos
 {
-    public class Sprint
+    public class SprintDto
     {
         public int Id { get; set; }
-        
+
         [Required]
         public string Name { get; set; }
 
@@ -19,10 +20,8 @@ namespace Jiraiya.Models
         [Required]
         public DateTime PredictedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
+        public ProjectDto Project { get; set; }
+        public List<IssueDto> Issues { get; set; }
 
-        [Required]
-        public Project Project { get; set; }
-
-        public ICollection<Issue> Issues { get; set; }
     }
 }
