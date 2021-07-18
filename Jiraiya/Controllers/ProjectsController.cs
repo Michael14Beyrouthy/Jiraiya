@@ -12,5 +12,10 @@ namespace Jiraiya.Controllers
         {
             return View();
         }
+
+        public ActionResult Index()
+        {
+            return View();
+        }
     }
 }

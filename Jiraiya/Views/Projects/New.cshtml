@@ -57,6 +57,7 @@
             var validator = $("#newProject").validate({
 
                 submitHandler: function () {
+                    //Convert form data to Json to pass to api create method
                     var formData = objectifyForm($("#newProject").serializeArray());
 
                     $.ajax({

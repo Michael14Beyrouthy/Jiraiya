@@ -12,11 +12,17 @@ namespace Jiraiya.App_Start
     {
         public MappingProfile()
         {
+            //Domain to Dto
             Mapper.CreateMap<Project, ProjectDto>();
-            Mapper.CreateMap<ProjectDto, Project>();
-            Mapper.CreateMap<Issue, IssueDto>();
             Mapper.CreateMap<Sprint, SprintDto>();
-        }        
+            Mapper.CreateMap<Issue, IssueDto>();
+
+            //Dto to Domain
+            Mapper.CreateMap<ProjectDto, Project>().ForMember(p => p.Id, opt => opt.Ignore());
+            Mapper.CreateMap<SprintDto, Sprint>().ForMember(s => s.Id, opt => opt.Ignore());
+            Mapper.CreateMap<IssueDto, Issue>().ForMember(i => i.Id, opt => opt.Ignore());
+
+        }
 
     }
 }

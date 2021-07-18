@@ -11,6 +11,7 @@ namespace Jiraiya
     {
         public static void Register(HttpConfiguration config)
         {
+            //These lines are so that our json return objects can be in camel case
             var settings = config.Formatters.JsonFormatter.SerializerSettings;
             settings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             settings.Formatting = Formatting.Indented;

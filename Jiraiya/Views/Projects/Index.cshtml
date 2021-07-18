@@ -1,0 +1,74 @@
+﻿@*
+    Note: I've set the model for this view to IEnumerable<Project>.
+    This is a simple interface implemented by the list class. Since
+    in this view we only want to iterate over this list, and we don't
+    need any of the operations in the List class (eg Add, Remove, etc),
+    it's better to use the IEnumerable interface, which allows use to
+    iterate over the list. If in the future, we replace the List with a
+    different data structure, as long as it is enumerable, our view code
+    will remain unchanged.
+*@
+@model IEnumerable<Jiraiya.Models.Project>
+@{ ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>Projects</h2>
+
+@Html.ActionLink("New Project", "New", "Projects", null, new { @class = "btn btn-primary" })
+<table id="projects" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Project</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script>$(document).ready(function () {
+            //Datatable allows us to display our projects in a much more interactive table
+            //we need to provide the configuration object to use our api as the source of data for our datatable
+            var table = $("#projects").DataTable({
+                ajax: {
+                    url: "/api/projects",
+                    dataSrc: "" //dataSrc is empty string because our url directly gives us the list of objects we want
+                },
+                columns: [
+                    {
+                        data: "name"
+                        /*render: function (data, type, project) {
+                            return "<a href='/customers/edit/" + project.id + "'>" + project.name + "</a>";
+                        }*/
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-project-id=" + data + ">Delete</button>";
+                        }
+                    }
+                ]
+            });
+
+
+            $("#projects").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Are you sure you want to delete this project ?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/api/projects/" + button.attr("data-project-id"),
+                            method: "DELETE",
+                            success: function () {
+                                //if we don't remove the row here, the customer in the table won't disappear
+                                //until we refresh, even tho the customer will have been deleted from the database
+                                //the call to draw makes the datable draw itself again
+                                table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+        });</script>
+}

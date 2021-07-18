@@ -70,12 +70,15 @@ namespace Jiraiya.Controllers.Api
         }
 
         //DELETE /api/projects/1
+        [HttpDelete]
         public void DeleteProject(int id)
         {
+
             var projectInDb = _context.Projects.SingleOrDefault(p => p.Id == id);
 
             if (projectInDb == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
+
             _context.Projects.Remove(projectInDb);
             _context.SaveChanges();
         }
