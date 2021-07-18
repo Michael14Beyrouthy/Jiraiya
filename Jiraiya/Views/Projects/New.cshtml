@@ -61,10 +61,10 @@
                     var formData = objectifyForm($("#newProject").serializeArray());
 
                     $.ajax({
-                        url: "/api/projects",
-                        method: "post",
-                        data: formData
-                    })
+                            url: "/api/projects",
+                            method: "post",
+                            data: formData
+                        })
                         .done(function () {
                             toastr.success("Project successfully recorded.");
 

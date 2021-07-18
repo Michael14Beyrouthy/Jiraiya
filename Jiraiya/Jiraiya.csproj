@@ -192,17 +192,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202107142148065_InitialModel.cs" />
-    <Compile Include="Migrations\202107142148065_InitialModel.Designer.cs">
-      <DependentUpon>202107142148065_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107142319592_UpdatedFieldsInProjectIssueAndSprint.cs" />
-    <Compile Include="Migrations\202107142319592_UpdatedFieldsInProjectIssueAndSprint.Designer.cs">
-      <DependentUpon>202107142319592_UpdatedFieldsInProjectIssueAndSprint.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202107170004064_AddedAssociationsBetweenProjectIssueAndSprint.cs" />
-    <Compile Include="Migrations\202107170004064_AddedAssociationsBetweenProjectIssueAndSprint.Designer.cs">
-      <DependentUpon>202107170004064_AddedAssociationsBetweenProjectIssueAndSprint.cs</DependentUpon>
+    <Compile Include="Migrations\202107182231099_InitialModel.cs" />
+    <Compile Include="Migrations\202107182231099_InitialModel.Designer.cs">
+      <DependentUpon>202107182231099_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -455,6 +447,8 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Projects\New.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\ProjectPage.cshtml" />
+    <Content Include="Views\Projects\NewSprint.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -473,14 +467,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202107142148065_InitialModel.resx">
-      <DependentUpon>202107142148065_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107142319592_UpdatedFieldsInProjectIssueAndSprint.resx">
-      <DependentUpon>202107142319592_UpdatedFieldsInProjectIssueAndSprint.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202107170004064_AddedAssociationsBetweenProjectIssueAndSprint.resx">
-      <DependentUpon>202107170004064_AddedAssociationsBetweenProjectIssueAndSprint.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202107182231099_InitialModel.resx">
+      <DependentUpon>202107182231099_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

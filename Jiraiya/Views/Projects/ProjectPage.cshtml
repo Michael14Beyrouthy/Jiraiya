@@ -1,0 +1,26 @@
+﻿@model Jiraiya.Models.Project
+
+@{
+    ViewBag.Title = "Project";
+    Layout = "_Layout";
+}
+
+<h2>Project</h2>
+
+<div>
+    <label>Name</label>
+    <input type="text" name="name" value="@Model.Name" readonly />
+</div>
+
+<div>
+    <label>Start Date</label>
+    <input id="startDateField" type='date' name="startDate" value="@Model.StartDate" readonly>
+</div>
+
+<div>
+    <label>Predicted End Date</label>
+    <input id="endDateField" type='date' name="predictedEndDate" value="@Model.PredictedEndDate" readonly>
+</div>
+
+@Html.ActionLink("New Sprint", "NewSprint", "Projects", new { id = Model.Id }, new { @class = "btn btn-primary" })
+

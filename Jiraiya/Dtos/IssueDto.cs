@@ -15,5 +15,6 @@ namespace Jiraiya.Dtos
         public string Name { get; set; }
         public bool Closed { get; set; }
         public SprintDto Sprint { get; set; }
+        public byte SprintId { get; set; }
     }
 }

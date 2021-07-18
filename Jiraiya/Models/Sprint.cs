@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -20,9 +21,10 @@ namespace Jiraiya.Models
         public DateTime PredictedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
 
-        [Required]
+        [ForeignKey("Project")]
+        public int ProjectId { get; set; }
         public Project Project { get; set; }
-
+        
         public ICollection<Issue> Issues { get; set; }
     }
 }

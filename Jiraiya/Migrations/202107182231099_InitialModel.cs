@@ -12,38 +12,38 @@ namespace Jiraiya.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Closed = c.Boolean(nullable: false),
-                        Sprint_Id = c.Int(),
+                        SprintId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Sprints", t => t.Sprint_Id)
-                .Index(t => t.Sprint_Id);
+                .ForeignKey("dbo.Sprints", t => t.SprintId, cascadeDelete: true)
+                .Index(t => t.SprintId);
             
             CreateTable(
                 "dbo.Sprints",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         StartDate = c.DateTime(nullable: false),
                         PredictedEndDate = c.DateTime(nullable: false),
-                        ActualEndDate = c.DateTime(nullable: false),
-                        Project_Id = c.Int(),
+                        ActualEndDate = c.DateTime(),
+                        ProjectId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Projects", t => t.Project_Id)
-                .Index(t => t.Project_Id);
+                .ForeignKey("dbo.Projects", t => t.ProjectId, cascadeDelete: true)
+                .Index(t => t.ProjectId);
             
             CreateTable(
                 "dbo.Projects",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         StartDate = c.DateTime(nullable: false),
                         PredictedEndDate = c.DateTime(nullable: false),
-                        ActualEndDate = c.DateTime(nullable: false),
+                        ActualEndDate = c.DateTime(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -123,16 +123,16 @@ namespace Jiraiya.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.Issues", "Sprint_Id", "dbo.Sprints");
-            DropForeignKey("dbo.Sprints", "Project_Id", "dbo.Projects");
+            DropForeignKey("dbo.Issues", "SprintId", "dbo.Sprints");
+            DropForeignKey("dbo.Sprints", "ProjectId", "dbo.Projects");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropIndex("dbo.Sprints", new[] { "Project_Id" });
-            DropIndex("dbo.Issues", new[] { "Sprint_Id" });
+            DropIndex("dbo.Sprints", new[] { "ProjectId" });
+            DropIndex("dbo.Issues", new[] { "SprintId" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");

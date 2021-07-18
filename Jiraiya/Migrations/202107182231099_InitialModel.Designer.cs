@@ -7,13 +7,13 @@ namespace Jiraiya.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedAssociationsBetweenProjectIssueAndSprint : IMigrationMetadata
+    public sealed partial class InitialModel : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedAssociationsBetweenProjectIssueAndSprint));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialModel));
         
         string IMigrationMetadata.Id
         {
-            get { return "202107170004064_AddedAssociationsBetweenProjectIssueAndSprint"; }
+            get { return "202107182231099_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

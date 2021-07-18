@@ -21,6 +21,7 @@ namespace Jiraiya.Dtos
         public DateTime PredictedEndDate { get; set; }
         public DateTime? ActualEndDate { get; set; }
         public ProjectDto Project { get; set; }
+        public byte ProjectId { get; set; }
         public List<IssueDto> Issues { get; set; }
 
     }
