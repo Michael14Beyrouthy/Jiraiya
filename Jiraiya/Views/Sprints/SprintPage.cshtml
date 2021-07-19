@@ -1,0 +1,32 @@
+﻿@model Jiraiya.Models.Sprint
+
+@{
+    ViewBag.Title = "Sprint Page";
+}
+
+<h2>@Model.Name</h2>
+
+@*<div>
+        <label>Name:</label>
+        <input type="text" name="name" value="@Model.Name" readonly />
+    </div>*@
+<div>
+    <label>Start Date:</label>
+    @Model.StartDate.ToString("dd-MMM-yyyy")
+</div>
+
+<div>
+    <label>Predicted End Date:</label>
+    @Model.PredictedEndDate.ToString("dd-MMM-yyyy")
+</div>
+
+<table id="issues" class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>Issue</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>

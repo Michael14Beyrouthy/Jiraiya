@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,9 +21,9 @@ namespace Jiraiya.Controllers.Api
         }
         
         //GET /api/projects
-        public IEnumerable<ProjectDto> GetProjects()
+        public IHttpActionResult GetProjects()
         {
-            return _context.Projects.ToList().Select(Mapper.Map<Project, ProjectDto>);
+            return Ok(_context.Projects.Include(p => p.Sprints).ToList().Select(Mapper.Map<Project, ProjectDto>));
         }
 
         //GET /api/projects/1

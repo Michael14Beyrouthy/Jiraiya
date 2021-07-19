@@ -183,9 +183,11 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\ProjectsController.cs" />
+    <Compile Include="Controllers\Api\SprintsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="Dtos\IssueDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
     <Compile Include="Dtos\SprintDto.cs" />
@@ -445,10 +447,12 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
-    <Content Include="Views\Projects\New.cshtml" />
+    <Content Include="Views\Projects\ProjectsForm.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\ProjectPage.cshtml" />
-    <Content Include="Views\Projects\NewSprint.cshtml" />
+    <Content Include="Views\Sprints\SprintsForm.cshtml" />
+    <Content Include="Views\Sprints\Index.cshtml" />
+    <Content Include="Views\Sprints\SprintPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

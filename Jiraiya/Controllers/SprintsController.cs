@@ -7,11 +7,11 @@ using Jiraiya.Models;
 
 namespace Jiraiya.Controllers
 {
-    public class ProjectsController : Controller
+    public class SprintsController : Controller
     {
         private ApplicationDbContext _context;
 
-        public ProjectsController()
+        public SprintsController()
         {
             _context = new ApplicationDbContext();
         }
@@ -22,24 +22,27 @@ namespace Jiraiya.Controllers
         {
             _context.Dispose();
         }
-        public ActionResult New()
-        {
-            return View("ProjectsForm");
-        }
 
+
+        // GET: Sprints
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult ViewProject(int id)
+        public ActionResult New(int id)
         {
-            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+            return View("SprintsForm", id);
+        }
 
-            if (project == null)
+        public ActionResult ViewSprint(int id)
+        {
+            var sprint = _context.Sprints.SingleOrDefault(p => p.Id == id);
+
+            if (sprint == null)
                 return HttpNotFound();
 
-            return View("ProjectPage", project);
+            return View("SprintPage", sprint);
         }
     }
 }
