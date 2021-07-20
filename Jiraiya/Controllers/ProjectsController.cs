@@ -22,14 +22,15 @@ namespace Jiraiya.Controllers
         {
             _context.Dispose();
         }
-        public ActionResult New()
-        {
-            return View("ProjectsForm");
-        }
 
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult New()
+        {
+            return View("ProjectsForm");
         }
 
         public ActionResult ViewProject(int id)

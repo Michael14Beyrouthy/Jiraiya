@@ -40,7 +40,7 @@
             //we need to provide the configuration object to use our api as the source of data for our datatable
             var table = $("#sprints").DataTable({
                 ajax: {
-                    url: "/api/sprints",
+                    url: "/api/sprints?projectId=" + @Model.Id,
                     dataSrc: "" //dataSrc is empty string because our url directly gives us the list of objects we want
                 },
                 columns: [

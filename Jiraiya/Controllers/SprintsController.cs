@@ -37,7 +37,7 @@ namespace Jiraiya.Controllers
 
         public ActionResult ViewSprint(int id)
         {
-            var sprint = _context.Sprints.SingleOrDefault(p => p.Id == id);
+            var sprint = _context.Sprints.SingleOrDefault(s => s.Id == id);
 
             if (sprint == null)
                 return HttpNotFound();

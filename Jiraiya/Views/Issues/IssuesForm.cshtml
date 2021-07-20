@@ -1,0 +1,70 @@
+﻿@model int
+
+@{
+    ViewBag.Title = "IssuesForm";
+}
+
+<h2>New Issue</h2>
+<form id="newIssue">
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" name="name" value="" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <input id="closed" type='hidden' name="closed" value="false">
+    </div>
+
+    <div class="form-group">
+        <input id="sprintId" type='hidden' name="sprintId" value="@Model">
+    </div>
+
+    <button class="btn btn-primary" type="submit" form="newIssue">Submit</button>
+</form>
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+
+        function objectifyForm(formArray) {
+            //serialize data function
+            var returnArray = {};
+            for (var i = 0; i < formArray.length; i++) {
+                returnArray[formArray[i]['name']] = formArray[i]['value'];
+            }
+            return returnArray;
+        }
+
+        $(document).ready(function () {
+            var validator = $("#newIssue").validate({
+
+                submitHandler: function () {
+                    //Convert form data to Json to pass to api create method
+                    var formData = objectifyForm($("#newIssue").serializeArray());
+
+                    $.ajax({
+                            url: "/api/issues",
+                            method: "post",
+                            data: formData
+                        })
+                        .done(function () {
+                            toastr.success("Issue successfully recorded.");
+                            window.location.href = "/sprints/viewSprint/" + @Model;
+                            validator.resetForm();
+                        })
+                        .fail(function () {
+                            toastr.error("Something unexpected happened.");
+                        });
+
+                    //to prevent the form from being submitted normally
+                    return false;
+                }
+            });
+        });
+
+    </script>
+}
+
+

@@ -29,7 +29,7 @@ namespace Jiraiya.Controllers.Api
         //GET /api/projects/1
         public IHttpActionResult GetProject(int id)
         {
-            var project = _context.Projects.SingleOrDefault(p => p.Id == id);
+            var project = _context.Projects.Include(p => p.Sprints).SingleOrDefault(p => p.Id == id);
 
             if (project == null)
                 return NotFound();

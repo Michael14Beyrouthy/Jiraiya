@@ -21,15 +21,18 @@ namespace Jiraiya.Controllers.Api
         }
 
         //GET /api/sprints
-        public IHttpActionResult GetSprints()
+        public IHttpActionResult GetSprints(int projectId = 0)
         {
-            return Ok(_context.Sprints.ToList().Select(Mapper.Map<Sprint, SprintDto>));
+            if (projectId != 0)
+                return Ok(_context.Sprints.Include(s => s.Issues).Where(s => s.ProjectId == projectId).ToList().Select(Mapper.Map<Sprint, SprintDto>));
+                
+            return Ok(_context.Sprints.Include(s => s.Issues).ToList().Select(Mapper.Map<Sprint, SprintDto>));
         }
 
         //GET /api/sprints/1
         public IHttpActionResult GetSprint(int id)
         {
-            var sprint = _context.Sprints.SingleOrDefault(s => s.Id == id);
+            var sprint = _context.Sprints.Include(s => s.Issues).SingleOrDefault(s => s.Id == id);
 
             if (sprint == null)
                 return NotFound();
