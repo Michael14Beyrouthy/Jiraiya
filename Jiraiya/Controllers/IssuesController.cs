@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using Jiraiya.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Jiraiya.Controllers
 {
@@ -30,7 +32,7 @@ namespace Jiraiya.Controllers
         }
 
 
-        public ActionResult New(int id)
+        public ActionResult New(int? id)
         {
             return View("IssuesForm", id);
         }

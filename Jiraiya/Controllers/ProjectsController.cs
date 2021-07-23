@@ -7,6 +7,7 @@ using Jiraiya.Models;
 
 namespace Jiraiya.Controllers
 {
+    [Authorize]
     public class ProjectsController : Controller
     {
         private ApplicationDbContext _context;
@@ -28,9 +29,9 @@ namespace Jiraiya.Controllers
             return View();
         }
 
-        public ActionResult New()
+        public ActionResult New(int? id)
         {
-            return View("ProjectsForm");
+            return View("ProjectsForm", id);
         }
 
         public ActionResult ViewProject(int id)

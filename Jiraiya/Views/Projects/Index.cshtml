@@ -8,13 +8,15 @@
     different data structure, as long as it is enumerable, our view code
     will remain unchanged.
 *@
+@using Microsoft.AspNet.Identity
 @model IEnumerable<Jiraiya.Models.Project>
-@{ ViewBag.Title = "Projects";
-    Layout = "~/Views/Shared/_Layout.cshtml"; }
+@{ 
+    ViewBag.Title = "Projects";
+}
 
 <h2>Projects</h2>
 
-@Html.ActionLink("New Project", "New", "Projects", null, new { @class = "btn btn-primary" })
+@Html.ActionLink("New Project", "New", "Projects", new { id = System.Web.HttpContext.Current.User.Identity.GetUserId() }, new { @class = "btn btn-primary" })
 <table id="projects" class="table table-bordered table-hover">
     <thead>
         <tr>
@@ -31,9 +33,14 @@
     <script>$(document).ready(function () {
             //Datatable allows us to display our projects in a much more interactive table
             //we need to provide the configuration object to use our api as the source of data for our datatable
+            var applicationUserId = @System.Web.HttpContext.Current.User.Identity.GetUserId();
+
+            console.log(applicationUserId);
+
+
             var table = $("#projects").DataTable({
                 ajax: {
-                    url: "/api/projects",
+                    url: "/api/projects?applicationUserId=" + applicationUserId,
                     dataSrc: "" //dataSrc is empty string because our url directly gives us the list of objects we want
                 },
                 columns: [

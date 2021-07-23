@@ -23,5 +23,8 @@ namespace Jiraiya.Dtos
 
         //[Required]
         public ICollection<SprintDto> Sprints { get; set; }
+        //public ApplicationUser ApplicationUser { get; set; }
+        
+        //public int ApplicationUserId { get; set; }
     }
 }

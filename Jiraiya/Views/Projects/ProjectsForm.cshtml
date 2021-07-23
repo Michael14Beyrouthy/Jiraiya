@@ -1,10 +1,12 @@
-﻿@model dynamic
+﻿@model int?
 
 @{
     ViewBag.Title = "New Project Form";
 }
 
 <h2>New Project</h2>
+@*@Model*@
+
 <form id="newProject">
     <div class="form-group">
         <label>Name</label>
@@ -67,8 +69,8 @@
                         })
                         .done(function () {
                             toastr.success("Project successfully recorded.");
-
                             validator.resetForm();
+                            window.location.href = "/projects/index";
                         })
                         .fail(function () {
                             toastr.error("Something unexpected happened.");

@@ -8,6 +8,7 @@ using System.Web.Http;
 using AutoMapper;
 using Jiraiya.Dtos;
 using Jiraiya.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Jiraiya.Controllers.Api
 {
@@ -21,9 +22,20 @@ namespace Jiraiya.Controllers.Api
         }
         
         //GET /api/projects
-        public IHttpActionResult GetProjects()
+        public IHttpActionResult GetProjects(int applicationUserId = 0)
         {
-            return Ok(_context.Projects.Include(p => p.Sprints).ToList().Select(Mapper.Map<Project, ProjectDto>));
+            var projectUsers = _context.ProjectUsers.Where(p => p.ApplicationUserId == applicationUserId);
+
+            List<int> projectIds = new List<int>();
+
+            foreach (var projectUser in projectUsers)
+                projectIds.Add(projectUser.ProjectId);
+
+            var projectsQuery = _context.Projects.Include(p => p.Sprints).Where(p => projectIds.Contains(p.Id));
+
+            var projectDtos = projectsQuery.ToList().Select(Mapper.Map<Project, ProjectDto>);
+
+            return Ok(projectDtos);
         }
 
         //GET /api/projects/1
@@ -45,7 +57,34 @@ namespace Jiraiya.Controllers.Api
                 return BadRequest();
 
             var project = Mapper.Map<ProjectDto, Project>(projectDto);
+
             _context.Projects.Add(project);
+            _context.SaveChanges();
+
+            /*
+             * COPYING CREATE PROJECTUSER CODE FROM POJECTUSERSCONTROLLER IN ORDER
+             * TO CREATE A NEW PROJECT USER BETWEEN THE NEWLY CREATED PROJECT AND ITS CREATOR. 
+             * THERE IS MAYBE A BETTER WAY TO DO THIS.
+             */
+
+            int currentUserId = Int32.Parse(System.Web.HttpContext.Current.User.Identity.GetUserId());
+
+            ProjectUserDto projectUser = new ProjectUserDto()
+            {
+                ApplicationUserId = currentUserId,
+                ProjectId = project.Id
+            };
+
+            var applicationUserForProjectUser = _context.Users.Single(u => u.Id == projectUser.ApplicationUserId);
+            var projectForProjectUser = _context.Projects.Single(p => p.Id == projectUser.ProjectId);
+
+            var newProjectUser = new ProjectUser()
+            {
+                ApplicationUser = applicationUserForProjectUser,
+                Project = projectForProjectUser
+            };
+
+            _context.ProjectUsers.Add(newProjectUser);
             _context.SaveChanges();
 
             projectDto.Id = project.Id;

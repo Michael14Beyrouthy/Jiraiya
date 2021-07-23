@@ -184,6 +184,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\IssuesController.cs" />
     <Compile Include="Controllers\Api\ProjectsController.cs" />
+    <Compile Include="Controllers\Api\ProjectUsersController.cs" />
     <Compile Include="Controllers\Api\SprintsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssuesController.cs" />
@@ -192,6 +193,7 @@
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="Dtos\IssueDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
+    <Compile Include="Dtos\ProjectUserDto.cs" />
     <Compile Include="Dtos\SprintDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -200,12 +202,21 @@
     <Compile Include="Migrations\202107182231099_InitialModel.Designer.cs">
       <DependentUpon>202107182231099_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107220656548_AddedUserFieldToProjectAndChangedUserIdToInt.cs" />
+    <Compile Include="Migrations\202107220656548_AddedUserFieldToProjectAndChangedUserIdToInt.Designer.cs">
+      <DependentUpon>202107220656548_AddedUserFieldToProjectAndChangedUserIdToInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.cs" />
+    <Compile Include="Migrations\202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.Designer.cs">
+      <DependentUpon>202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Issue.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\ProjectUser.cs" />
     <Compile Include="Models\Sprint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -478,6 +489,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202107182231099_InitialModel.resx">
       <DependentUpon>202107182231099_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107220656548_AddedUserFieldToProjectAndChangedUserIdToInt.resx">
+      <DependentUpon>202107220656548_AddedUserFieldToProjectAndChangedUserIdToInt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.resx">
+      <DependentUpon>202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

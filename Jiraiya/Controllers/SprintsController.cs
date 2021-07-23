@@ -30,7 +30,7 @@ namespace Jiraiya.Controllers
             return View();
         }
 
-        public ActionResult New(int id)
+        public ActionResult New(int? id)
         {
             return View("SprintsForm", id);
         }

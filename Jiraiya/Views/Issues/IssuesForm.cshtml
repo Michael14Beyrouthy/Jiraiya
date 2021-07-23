@@ -1,4 +1,4 @@
-﻿@model int
+﻿@model int?
 
 @{
     ViewBag.Title = "IssuesForm";
@@ -51,8 +51,8 @@
                         })
                         .done(function () {
                             toastr.success("Issue successfully recorded.");
-                            window.location.href = "/sprints/viewSprint/" + @Model;
                             validator.resetForm();
+                            window.location.href = "/sprints/viewSprint/" + @Model;
                         })
                         .fail(function () {
                             toastr.error("Something unexpected happened.");
