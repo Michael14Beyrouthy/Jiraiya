@@ -1,0 +1,83 @@
+﻿@model Jiraiya.Models.Project
+
+@{
+    ViewBag.Title = "New ProjectUser";
+}
+
+<h2>Add User To Project @Model.Name</h2>
+
+<form id="newProjectUser">
+    <div class="form-group">
+        <label style="font-size:20px;">User</label>
+        <div class="tt-container">
+            <input id="user" name="user" data-rule-validUser="true" required type="text" value="" class="form-control" />
+        </div>
+    </div>
+
+    <button class="btn btn-primary">Submit</button>
+</form>
+
+<br />
+
+@Html.ActionLink("Back to Project", "ViewProject", "Projects", new { id = Model.Id }, new { @class = "btn btn-primary" })
+
+
+
+@section scripts
+{
+
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            //when the user will submit the form, we will send this vm to the Web API
+            var vm = {
+                projectId: @Model.Id
+            };
+            var users = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('email'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '/api/users?query=%QUERY',
+                    wildcard: '%QUERY'
+                }
+            });
+            $('#user').typeahead({
+                minLength: 2,
+                highlight: true
+            }, {
+                name: 'users',
+                display: 'email',
+                source: users
+            }).on("typeahead:select", function (e, user) {
+                vm.applicationUserId = user.id;
+            });
+
+            $.validator.addMethod("validUser", function () {
+                return vm.applicationUserId && vm.applicationUserId !== 0;
+            }, "Please select a valid User.");
+
+            var validator = $("#newProjectUser").validate({
+                submitHandler: function () {
+                    $.ajax({
+                        url: "/api/projectUsers",
+                        method: "post",
+                        data: vm
+                    })
+                        .done(function () {
+                            toastr.success("User successfully added to project.");
+
+                            $("#user").typeahead("val", "");
+
+                            validator.resetForm();
+                        })
+                        .fail(function () {
+                            toastr.error("Something unexpected happened.");
+                        });
+
+                    //to prevent the form from being submitted normally
+                    return false;
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,12 @@
+﻿@model Jiraiya.Models.Sprint
+
+@{
+    ViewBag.Title = "Can't Close Sprint";
+}
+
+<h2>The Sprint @Model.Name was unable to be closed as there is another open Sprint at this time.</h2>
+<h3>Only one sprint can be open at a time.</h3>
+
+@Html.ActionLink("Back to Sprint", "ViewSprint", "Sprints", new { id = @Model.Id }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Back to Project", "ViewProject", "Projects", new { id = @Model.ProjectId }, new { @class = "btn btn-primary" })
+

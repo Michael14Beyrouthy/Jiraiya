@@ -5,7 +5,6 @@
 }
 
 <h2>New Project</h2>
-@*@Model*@
 
 <form id="newProject">
     <div class="form-group">
@@ -25,6 +24,11 @@
 
     <button class="btn btn-primary" type="submit" form="newProject">Submit</button>
 </form>
+
+<br />
+
+@Html.ActionLink("Cancel", "Index", "Projects", null, new { @class = "btn btn-primary" })
+
 
 @section scripts
 {
@@ -49,7 +53,7 @@
         function objectifyForm(formArray) {
             //serialize data function
             var returnArray = {};
-            for (var i = 0; i < formArray.length; i++){
+            for (var i = 0; i < formArray.length; i++) {
                 returnArray[formArray[i]['name']] = formArray[i]['value'];
             }
             return returnArray;
@@ -63,10 +67,10 @@
                     var formData = objectifyForm($("#newProject").serializeArray());
 
                     $.ajax({
-                            url: "/api/projects",
-                            method: "post",
-                            data: formData
-                        })
+                        url: "/api/projects",
+                        method: "post",
+                        data: formData
+                    })
                         .done(function () {
                             toastr.success("Project successfully recorded.");
                             validator.resetForm();

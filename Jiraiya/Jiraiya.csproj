@@ -186,10 +186,12 @@
     <Compile Include="Controllers\Api\ProjectsController.cs" />
     <Compile Include="Controllers\Api\ProjectUsersController.cs" />
     <Compile Include="Controllers\Api\SprintsController.cs" />
+    <Compile Include="Controllers\Api\UsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\IssuesController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\ProjectUsersController.cs" />
     <Compile Include="Controllers\SprintsController.cs" />
     <Compile Include="Dtos\IssueDto.cs" />
     <Compile Include="Dtos\ProjectDto.cs" />
@@ -210,6 +212,10 @@
     <Compile Include="Migrations\202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.Designer.cs">
       <DependentUpon>202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107261819381_AddedOpenFieldToSprint.cs" />
+    <Compile Include="Migrations\202107261819381_AddedOpenFieldToSprint.Designer.cs">
+      <DependentUpon>202107261819381_AddedOpenFieldToSprint.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -220,6 +226,7 @@
     <Compile Include="Models\Sprint.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ViewProjectViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-lumen.css" />
@@ -336,10 +343,13 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -425,6 +435,10 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\toastr.js" />
     <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -469,6 +483,9 @@
     <Content Include="Views\Issues\Index.cshtml" />
     <Content Include="Views\Issues\IssuesForm.cshtml" />
     <Content Include="Views\Issues\IssuePage.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
+    <Content Include="Views\Sprints\CantOpenSprint.cshtml" />
+    <Content Include="Views\ProjectUsers\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -495,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.resx">
       <DependentUpon>202107222212327_CreatedProjectUserClassToCreateManyToManyAssociationBetweenApplicationUserAndProject.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107261819381_AddedOpenFieldToSprint.resx">
+      <DependentUpon>202107261819381_AddedOpenFieldToSprint.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -41,6 +42,36 @@ namespace Jiraiya.Controllers
 
             if (sprint == null)
                 return HttpNotFound();
+
+            return View("SprintPage", sprint);
+        }
+
+        public ActionResult ChangeStatus(int id, bool open)
+        {
+            var sprint = _context.Sprints.SingleOrDefault(i => i.Id == id);
+
+            var allSprints = _context.Sprints.Where(s => s.ProjectId == sprint.ProjectId).ToList();
+
+            if (sprint != null)
+            {
+                if (open)
+                {
+                    foreach (var curr in allSprints)
+                    {
+                        if (curr.Open)
+                            return View("CantOpenSprint", sprint);
+                    }
+
+                    sprint.Open = true;
+                    _context.SaveChanges();
+                    return View("SprintPage", sprint);
+                }
+                    
+                else
+                    sprint.Open = false;
+            }
+
+            _context.SaveChanges();
 
             return View("SprintPage", sprint);
         }

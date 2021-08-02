@@ -6,10 +6,6 @@
 
 <h2>@Model.Name</h2>
 
-@*<div>
-        <label>Name:</label>
-        <input type="text" name="name" value="@Model.Name" readonly />
-    </div>*@
 <div>
     <label>Start Date:</label>
     @Model.StartDate.ToString("dd-MMM-yyyy")
@@ -31,7 +27,19 @@
     <tbody>
     </tbody>
 </table>
+
+@Html.ActionLink("Back to Project", "ViewProject", "Projects", new { id = Model.ProjectId }, new { @class = "btn btn-primary" })
+
 @Html.ActionLink("New Issue", "New", "Issues", new { id = Model.Id }, new { @class = "btn btn-primary" })
+
+@if (Model.Open)
+{
+    @Html.ActionLink("Close Sprint", "ChangeStatus", "Sprints", new { id = Model.Id, open = false }, new { @class = "btn btn-primary" })
+}
+else
+{
+    @Html.ActionLink("Open Sprint", "ChangeStatus", "Sprints", new { id = Model.Id, open = true }, new { @class = "btn btn-primary" })
+}
 
 @section scripts
 {

@@ -13,6 +13,8 @@ namespace Jiraiya.Dtos
 
         [Required]
         public string Name { get; set; }
+        public bool Open { get; set; }
+
 
         [Required]
         public DateTime StartDate { get; set; }

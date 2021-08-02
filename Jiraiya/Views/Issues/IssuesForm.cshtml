@@ -22,6 +22,10 @@
     <button class="btn btn-primary" type="submit" form="newIssue">Submit</button>
 </form>
 
+<br />
+
+@Html.ActionLink("Cancel", "ViewSprint", "Sprints", new { id = Model }, new { @class = "btn btn-primary" })
+
 @section scripts
 {
 

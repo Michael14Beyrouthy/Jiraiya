@@ -6,6 +6,8 @@
 
 <h2>@Model.Name</h2>
 
+@Html.ActionLink("Back to Sprint", "ViewSprint", "Sprints", new { id = Model.SprintId }, new { @class = "btn btn-primary" })
+
 @if (Model.Closed)
 {
     @Html.ActionLink("Open Issue", "ChangeStatus", "Issues", new { id = Model.Id, close = false }, new { @class = "btn btn-primary" })
